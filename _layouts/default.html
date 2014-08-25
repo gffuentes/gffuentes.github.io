@@ -19,53 +19,7 @@
 <!-- NAVBAR
 ================================================== -->
   <body>
-    <!DOCTYPE html>
-<html lang="en">
-  <head>
-  	 <link href="twitter_assets/css/bootstrap.css" rel="stylesheet">
-  	 <title>Welcome to Gabe's Virtual R&#233sum&#233</title>
-  	 <link rel="icon" href="http://getbootstrap.com/favicon.ico"> <!-- INSERT CUSTOM FAVICON HERE -->
-  </head>
-  <!-- <body> -->
-    <div class="navbar-wrapper">
-      <div class="container">
-
-        <div class="navbar navbar-inverse navbar-static-top" role="navigation">
-          <div class="container">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="/">Gabe Fuentes</a>
-            </div>
-            <div class="navbar-collapse collapse">
-              <ul class="nav navbar-nav">
-                <li class="active"><a href="/">Home</a></li>
-                <li><a href="/blog.html">Blog</a></li>
-                <li><a href="#contact">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#contact">Sources</a></li>
-                <!-- <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
-                  <ul class="dropdown-menu" role="menu">
-                    <li class="dropdown-header">Latest</li>
-                    <li class="divider"></li>
-                    <li><a href="#">Separated link</a></li>
-                    <li><a href="#">One more separated link</a></li> -->
-                  </ul>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-<!-- </body> -->
-<!-- </html> -->
+    {% include header.html %}
     <header id="home">
           <section class="hero" id="hero">
             <div class="container">
@@ -214,7 +168,7 @@
 
     </div> -->
     <!-- /.container --> 
-      
+      {% include footer.html %}
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
