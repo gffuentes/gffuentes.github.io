@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-  	 <link href="twitter_assets/css/bootstrap.css" rel="stylesheet">
-  	 <title>Welcome to Gabe's Virtual R&#233sum&#233</title>
-  	 <link rel="icon" href="http://getbootstrap.com/favicon.ico"> <!-- INSERT CUSTOM FAVICON HERE -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{{ site.url }}/twitter_assets/css/bootstrap.css" rel="stylesheet">
+    <link rel="icon" href="http://getbootstrap.com/favicon.ico">
   </head>
   <!-- <body> -->
     <div class="navbar-wrapper">
@@ -22,18 +24,11 @@
             </div>
             <div class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
-                <li class="active"><a href="/">Home</a></li>
-                <li><a href="/blog.html">Blog</a></li>
-                <li><a href="#contact">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#contact">Sources</a></li>
-                <!-- <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
-                  <ul class="dropdown-menu" role="menu">
-                    <li class="dropdown-header">Latest</li>
-                    <li class="divider"></li>
-                    <li><a href="#">Separated link</a></li>
-                    <li><a href="#">One more separated link</a></li> -->
+                <li {% if page.url == "/index.html" %}class="active"{% endif %}><a href="/">Home</a></li>
+                <li {% if page.url == "/blog.html" %}class="active"{% endif %}><a href="/blog.html">Blog</a></li>
+                <li {% if page.url == "/about.html" %}class="active"{% endif %}><a href="/about.html#contact">About</a></li>
+                <li {% if page.url == "/contact.html" %}class="active"{% endif %}><a href="/contact.html">Contact</a></li>
+                <li {% if page.url == "/sources.html" %}class="active"{% endif %}><a href="/sources.html">Sources</a></li>
                   </ul>
                 </li>
               </ul>

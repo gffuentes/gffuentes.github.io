@@ -1,4 +1,7 @@
-{% include header_blog.html %}
+<head>
+  <title>{{ page.title }} | Gabe Fuentes</title>
+</head>
+{% include header.html %}
 <h1>{{ page.title }}</h1>
 {{ content }}
 
@@ -9,5 +12,3 @@
 {% if page.previous %}
   <a href="{{ page.previous.url }}">Back</a>
 {% endif %}
-
-{% include footer.html %}
