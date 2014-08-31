@@ -10,7 +10,6 @@ html {
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
 }
-
 body {
   margin: 0;
 }
@@ -1079,36 +1078,29 @@ h6 .small,
 h1,
 .h1 {
   font-size: 36px;
-  margin-left: 15px;
 }
 h2,
 .h2 {
   font-size: 30px;
-  margin-left: 15px;
 }
 h3,
 .h3 {
   font-size: 24px;
-  margin-left: 15px;
 }
 h4,
 .h4 {
   font-size: 18px;
-  margin-left: 15px;
 }
 h5,
 .h5 {
   font-size: 14px;
-  margin-left: 15px;
 }
 h6,
 .h6 {
   font-size: 12px;
-  margin-left: 15px;
 }
 p {
   margin: 0 0 10px;
-  margin-left: 45px;
 }
 .lead {
   margin-bottom: 20px;
@@ -1404,19 +1396,19 @@ pre code {
   margin-right: auto;
   margin-left: auto;
 }
-@media (min-width: 100%) {
+@media (min-width: 768px) {
   .container {
-    width: 100%;
+    width: 750px;
   }
 }
-@media (min-width: 100%) {
+@media (min-width: 992px) {
   .container {
-    width: 100%;
+    width: 970px;
   }
 }
-@media (min-width: 100%) {
+@media (min-width: 1200px) {
   .container {
-    width: 100%;
+    width: 1170px;
   }
 }
 .container-fluid {
@@ -1426,13 +1418,13 @@ pre code {
   margin-left: auto;
 }
 .row {
-  margin-right: 0px;
+  margin-right: -15px;
   margin-left: -15px;
 }
 .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
   position: relative;
   min-height: 1px;
-  padding-right: 0px;
+  padding-right: 15px;
   padding-left: 15px;
 }
 .col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12 {
@@ -1769,13 +1761,13 @@ pre code {
     width: 66.66666667%;
   }
   .col-md-7 {
-    width: 50%;
+    width: 58.33333333%;
   }
   .col-md-6 {
     width: 50%;
   }
   .col-md-5 {
-    width: 49%;
+    width: 41.66666667%;
   }
   .col-md-4 {
     width: 33.33333333%;
@@ -3870,7 +3862,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
        -o-transform: translate3d(0, 0, 0);
           transform: translate3d(0, 0, 0);
 }
-@media (min-width: 100%) {
+@media (min-width: 768px) {
   .navbar-fixed-top,
   .navbar-fixed-bottom {
     border-radius: 0;

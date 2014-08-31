@@ -1,0 +1,18 @@
+.jumbotron {
+	margin-top: -50px;
+	height: 80%;
+	background-color: rgb(64, 82, 161);
+}
+.jumbotron .container {
+	margin-top: 100px;
+	width: 80%;
+}
+.jumbotron .container h1,
+.jumbotron .container p {
+	color: white;
+	text-align: center;
+}
+
+.jumbotron .container a {
+	color: rgba(209, 194, 198, .8);
+}

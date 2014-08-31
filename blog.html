@@ -1,13 +1,9 @@
 ---
-layout: default
-title: Blog
+layout: blog
+title: Post
+description: The official blog of my personal website.
 ---
-<head>
-	<title>Blog | Gabe Fuentes</title>
-</head>
-<h1>Blog Posts</h1>
-  <ul class="posts">
-    {% for post in site.posts %}
-      <li><span>{{ post.date | date_to_string }}</span>: <a href="{{ post.url }}">{{ post.title }}</a></li>
-    {% endfor %}
-  </ul>
+{% for post in site.posts %}
+    <h2 class="blog-post-title"><a href="{{ post.url }}">{{ post.title }}</a></h2>
+    <p class="blog-post-meta">{{ post.date | date: '%d %B, %Y' }}</p>
+{% endfor %}
