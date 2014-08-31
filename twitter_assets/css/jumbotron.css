@@ -1,7 +1,11 @@
 .jumbotron {
-	margin-top: -50px;
+	margin-top: 0px;
 	height: 80%;
-	background-color: rgb(64, 82, 161);
+	margin-left: 0px;
+	background-color: rgba(64, 82, 161,1);
+	/*opacity:0.9;*/
+	/*filter: alpha(opacity=70);*/
+	/*background-image: url('/assets/luna.png');*/
 }
 .jumbotron .container {
 	margin-top: 100px;

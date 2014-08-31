@@ -8,5 +8,8 @@ body {
 
 .github, .twitter {
 	height: 28px;
-	margin: -5px -8px;
+	margin: -5px -8px 0px -8px;
+}
+.navbar {
+	margin-bottom:0px;
 }

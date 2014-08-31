@@ -1,0 +1,13 @@
+.col-lg-4, .row {
+	text-align: center;
+	padding:0 15px;
+}
+.row {
+	width:100%;
+	padding-left:95px;
+}
+.col-lg-4 p{
+	text-align: center;
+	/*max-width: 350px;*/
+	/*margin-right: -200px;*/
+}

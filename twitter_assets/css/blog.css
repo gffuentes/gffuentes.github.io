@@ -2,10 +2,6 @@
  * Globals
  */
 
-body {
-  font-family: Georgia, "Times New Roman", Times, serif;
-  color: #555;
-}
 
 h1, .h1,
 h2, .h2,
@@ -25,7 +21,7 @@ h6, .h6 {
  */
 
 @media (min-width: 1200px) {
-  .container {
+  .container-blog{
     width: 970px;
   }
 }
@@ -164,4 +160,8 @@ h6, .h6 {
 }
 .blog-footer p:last-child {
   margin-bottom: 0;
+}
+
+a {
+  color: rgba(64, 82, 161,1);
 }
