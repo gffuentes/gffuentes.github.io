@@ -163,5 +163,23 @@ h6, .h6 {
 }
 
 a {
-  color: rgba(64, 82, 161,1);
+  /*color: rgba(64, 82, 161,1);*/
+  color: #428bca;
+}
+
+/* setting max width Images within blogposts */
+p img {
+  max-width:750px;
+  margin: 20px 0;
+}
+
+/* Moving main colomn on blog index */
+.row {
+  margin-left: 50px;
+}
+
+.blog-sidebar {
+  margin-top: -120px;
+  width: 230px;
+  margin-left: 130px;
 }
