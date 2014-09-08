@@ -14,7 +14,7 @@ title: Gabe Fuentes
       <div class="row">
         <div class="col-lg-4">
           <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" style="width: 140px; height: 140px;">
-          <h2>Heading</h2>
+          <h2>About Page</h2>
           <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
           <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
         </div>
@@ -26,8 +26,8 @@ title: Gabe Fuentes
         </div>
         <div class="col-lg-4">
           <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" style="width: 140px; height: 140px;">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+          <h2>Latest Post: {% assign post = site.posts.first %}{{ post.title }}</h2>
+          <p>{{ post.excerpt }}</p>
+          <p><a class="btn btn-default" href="{{ post.url }}" role="button">View details &raquo;</a></p>
         </div>
       </div>
