@@ -24,6 +24,16 @@
 .jumbotron .container p {
 	margin: 20px 100px 0px 100px;
 }
+@media (max-width: 800px) {
+	.jumbotron .container {
+		margin-top: 10%;
+	}
+	.jumbotron .container p {
+		margin: 10px 10px 0px 10px;
+		font-size: 20px;
+	}
+
+}
 .jumbotron .container a {
 	color: white;
 	text-decoration: underline;
