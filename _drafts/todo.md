@@ -1,0 +1,1 @@
+- for about page, use blog.webbb.be/trigger-css-animation-scroll/ to do something similar for default-jumbotron. or maybe see if twitter bootstrap has anything?

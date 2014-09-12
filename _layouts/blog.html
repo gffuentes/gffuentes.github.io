@@ -6,7 +6,11 @@
 
 <body>
   {% include header.html %}
-  
+  <div class="jumbotron">
+  <div class="container">
+    <h1>{{ page.title }}</h1>
+  </div>
+</div>
   <div class="container">
     <div class="row">
       <div class="blog-header">
@@ -64,3 +68,4 @@
 </body>
 <link href="{{ site.url }}/twitter_assets/css/navbar-static-top.css" rel="stylesheet">
 <link href="{{ site.url }}/twitter_assets/css/blog.css" rel="stylesheet">
+<link href="{{ site.url }}/twitter_assets/css/jumbotron_default.css" rel="stylesheet">
