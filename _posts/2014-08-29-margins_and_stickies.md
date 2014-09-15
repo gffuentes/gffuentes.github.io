@@ -1,5 +1,5 @@
 --- 
-layout: blog
+layout: post
 title: Margins & Sticky Footer
 description: CSS and HTML are much harder than they seem
 ---
@@ -9,5 +9,3 @@ The blog did not seem to look right before so I added margins. CSS & HTML are on
 More info on Sticky Footer: [link](http://css-tricks.com/snippets/css/sticky-footer/). There are about a million of them out there by the same name, this is just one.
 
 Thirdly, I want to add an image to the top of the blog-index page. That will allow for the eye to find the center and not think the titles and header are off-center. Still trying to think of a better way to do this since i've seen the feather done before and its kind of corny.
-
-	

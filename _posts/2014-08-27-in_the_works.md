@@ -1,5 +1,5 @@
 --- 
-layout: blog
+layout: post
 title: In the Works
 description: There is a lot that needs to be added...
 ---
