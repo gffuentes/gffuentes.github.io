@@ -1,11 +1,8 @@
 <head>
   <title>{{ page.title }} | Gabe Fuentes</title>
-  <!-- Custom styles for this template -->
-  <link href="{{ site.url }}/twitter_assets/css/blog.css" rel="stylesheet">
 </head>
-
-<body>
   {% include header.html %}
+<body>
   <div class="jumbotron">
   <div class="container">
     <h1>{{ page.title }}</h1>
@@ -16,7 +13,7 @@
       <div class="blog-header">
     </div>
 
-      <div class="col-md-9 blog-main col-md-offset-1" align="justify">
+      <div class="col-md-9 blog-main col-md-offset-2" align="justify">
 
         <div class="blog-post">
           {{ content }}
@@ -36,8 +33,9 @@
     </div><!-- /.row -->
 
   </div><!-- /.container -->
-  {% include footer.html %}
 </body>
+{% include footer.html %}
 <link href="{{ site.url }}/twitter_assets/css/navbar-static-top.css" rel="stylesheet">
 <link href="{{ site.url }}/twitter_assets/css/blog.css" rel="stylesheet">
 <link href="{{ site.url }}/twitter_assets/css/jumbotron_default.css" rel="stylesheet">
+<link href="{{ site.url }}/twitter_assets/css/post.css" rel="stylesheet">
