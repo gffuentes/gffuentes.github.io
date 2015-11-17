@@ -1,25 +1,37 @@
-<head>
-  <!-- Bootstrap core CSS -->
-  <link href="{{ site.url }}/twitter_assets/css/bootstrap.min.css" rel="stylesheet">
+<footer class="site-footer">
 
-  <!-- Custom styles for this template -->
-  <link href="{{ site.url }}/twitter_assets/css/sticky-footer.css" rel="stylesheet">
+  <div class="wrapper">
 
-  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
-</head>
+    <h2 class="footer-heading">{{ site.title }}</h2>
 
-<body>
+    <div class="footer-col-wrapper">
+      <!-- <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>{{ site.title }}</li>
+        </ul>
+      </div> -->
 
-  <!-- Begin page content -->
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          {% if site.github_username %}
+          <li>
+            {% include icon-github.html username=site.github_username %}
+          </li>
+          {% endif %}
 
-  <div class="footer">
-    <div class="container">
-      <p class="text-muted"><h id='gfoot'>Hosted by<a href="https://pages.github.com/" target="_blank"><img class='github' src="{{ site.url }}/assets/GitHub_Logo.png"></a></img></h><br><a href='/contact.html'>Contact Me</a></p>
+          {% if site.linkedin_username %}
+          <li>
+            {% include icon-linkedin.html username=site.linkedin_username %}
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+
+      <!-- <div class="footer-col footer-col-3"> -->
+        <!-- <p>{{ site.description }}</p> -->
+      <!-- </div> -->
     </div>
+
   </div>
 
-</body>
+</footer>

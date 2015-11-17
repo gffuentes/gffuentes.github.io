@@ -1,9 +1,0 @@
----
-layout: blog
-title: Post
-description: The official blog of my personal website.
----
-{% for post in site.posts %}
-    <h2 class="blog-post-title"><a href="{{ post.url }}">{{ post.title }}</a></h2>
-    <p class="blog-post-meta">{{ post.date | date: '%d %B, %Y' }}</p>
-{% endfor %}
