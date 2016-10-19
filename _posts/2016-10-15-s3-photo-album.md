@@ -15,6 +15,7 @@ But what were my main goals?
 - Not have to worry about tiered pricing given GB of photos
 - Easily accesible by family and friends
 - Organized by album for easy navigation
+- Backup images in their full resolution
 
 After finding a JS based photo gallery library (more to come on that later), I created a Sinatra based application served on an EC2 instance. After learning about static web pages hosted on S3, I thought I could do better (and even cheaper!). Below is a quick explanation of how I was able to create a photo album in S3.
 
@@ -25,7 +26,7 @@ After finding a JS based photo gallery library (more to come on that later), I c
 1. AWS S3 for Storage and Static Website Hosting
 2. Twitter Bootstrap for style
 3. [PhotoSwipe JS Library](http://photoswipe.com/)  for gallery
-4. ImageMagick for thumbnail creation
+4. [ImageMagick](http://www.imagemagick.org/script/index.php) for thumbnail creation
 
 **Setting up S3 Buckets:**
 
@@ -111,6 +112,9 @@ For more details on the AWS Javascript API, view their docs [here](http://docs.a
 2. Much of the `gallery.html` view will be directly from PhotoSwipe. The main function that makes this dynamic is below.
 
         var galleryName = getUrlParameter("name");
+        var largePath = 'images/' + galleryName + '/';
+        var thumbPath = 'images/small/' + galleryName + '/';
+        var params = { Bucket: 'gabe-storage', Prefix: largePath, Delimiter: '/', EncodingType: 'url', StartAfter: largePath };
         
         var getValues1 = function(params) {
           s3.listObjectsV2(params, function(err, data) {
@@ -134,4 +138,44 @@ For more details on the AWS Javascript API, view their docs [here](http://docs.a
           });
         };
 
-     
+    The previous 'home.html' gallery links lead to `/gallery.html?name=gallery+name`, with whatever vacation gallery you are visiting replacing `gallery+name`. On the gallery side, you then use this url parameter (with a nifty `getUrlParameter` function I found at StackOverflow linked [here](http://stackoverflow.com/questions/19491336/get-url-parameter-jquery-or-how-to-get-query-string-values-in-js)) to search s3 with the same `s3.listObjectsV2` function used in the home screen.
+
+    Originally, I did not have thumbnails - I just had the gallery load up the full resolution images in a smaller image size. This meant the gallery was extremely slow to load. To solve this, I created thumbnails as well (the `/small` folder nested within the storage bucket - more on resizing later). As part of the process of converting the full resolution images into thumbnails, I also added the full image size to the file name. I can then use those image sizes to display the zoomed in image as part of PhotoSwipe.
+
+    So, to wrap things up, I use the URL parameter to search through S3 for the right vacation. Once there, I display the thumbnail versions of each image and also give photoswipe the full resolution version, as well as the image size. To make like easier, the thumbnail file names and full resolution file names are almost identical except the image size addition for the full rez.
+
+**Image Resizing**
+
+I created the image resizing aspect as part of the original Sinatra application, so I kept using the ruby script and manually uploading the images to s3 in their corresponding folders. However, this could easily be updated to hit the AWS API and upload them automatically.
+
+If you have not used ImageMagick before, it is a really great command line tool for manipulating images in all sorts of ways - my three uses of it barely scratch the surface. Definitely check it out [here](http://www.imagemagick.org/script/index.php)!
+
+I started off with the photo album saved locally. The script iterates through each image and performs the following using the ruby interface for ImageMagick called `rmagick`.
+
+1. To resize the images, I scaled them to 10% their original size.
+
+        img.scale(0.1)
+
+2. I had a lot of trouble understanding why PhotoSwipe was displaying images in the wrong rotation only sometimes. What a figured out was that when a digital camera takes a picture, it stores the orientation of the camera as part of the metadata called EXIF profile. More info [here](http://www.imagemagick.org/script/command-line-options.php#auto-orient). ImageMagick makes reading the current orientation and converting if necessary easy!
+
+        if img.orientation.to_s != 'TopLeftOrientation' #correct, upright orientation
+          img.auto_orient!
+          img.write(i)
+        end
+
+3. Getting the image size and renaming the file is straightforward.
+
+        width,height = FastImage.size(i) unless i.include?("(")
+        File.rename(i, i.downcase.sub('.jpg', " (#{width}x#{height}).jpg")) unless i.include?("(")
+
+**Conclusion & After Thoughts**
+
+Overall, this was a good "beach project" to dive into. I had some great take aways on PhotoSwipe and ImageMagick. These are great tools to add to my repertoire. You can view the full source code [here](https://github.com/gffuentes/static-s3-photoalbum) for more details.
+
+As always, there are things that can be improved on! See below:
+
+- There is likely a better way to get the URL parameters using JS or jQuery - the solution I took seems quick and dirty, but works.
+
+- The image size that is added to the full resolution images could be in a better format for easier parsing
+
+- Image resizing can be automated using Amazon's Lambda! Funny enough, they have an [example](http://docs.aws.amazon.com/lambda/latest/dg/with-s3-example.html) on how to do this. I did not see this until after my implementation.
