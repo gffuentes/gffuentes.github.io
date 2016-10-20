@@ -12,25 +12,25 @@ After many vacations of borrowing my partner's aunt's DSLR, we had put together 
 But what were my main goals?
 
 - Cheap
-- Not have to worry about tiered pricing given GB of photos
+- No tiered pricing (per GB pricing models)
 - Easily accesible by family and friends
 - Organized by album for easy navigation
 - Backup images in their full resolution
 
-After finding a JS based photo gallery library (more to come on that later), I created a Sinatra based application served on an EC2 instance. After learning about static web pages hosted on S3, I thought I could do better (and even cheaper!). Below is a quick explanation of how I was able to create a photo album in S3.
+After finding a JS based photo gallery library (more to come on that later), I created a Sinatra based application served on an EC2 instance. After learning about static web pages hosted on S3, I thought I could do better (and even cheaper!). Below I share how I was able to create a photo album in S3.
 
 #Application
 
 **Ingredients:**
 
-1. AWS S3 for Storage and Static Website Hosting
+1. AWS S3 for storage and static website hosting
 2. Twitter Bootstrap for style
 3. [PhotoSwipe JS Library](http://photoswipe.com/)  for gallery
-4. [ImageMagick](http://www.imagemagick.org/script/index.php) for thumbnail creation
+4. [ImageMagick](http://www.imagemagick.org/script/index.php) for thumbnail creation via [rmagick](https://github.com/rmagick/rmagick)
 
 **Setting up S3 Buckets:**
 
-For more detailed instructions, especially on how to setup route53 to host your custom domain, see [Setting Up a Static S3 Site](http://docs.aws.amazon.com/AmazonS3/latest/dev/website-hosting-custom-domain-walkthrough.html)
+For more detailed instructions, especially on how to setup Route 53 to host your custom domain, see [Setting Up a Static S3 Site](http://docs.aws.amazon.com/AmazonS3/latest/dev/website-hosting-custom-domain-walkthrough.html)
 
 1. Create a bucket named after the URL of where your site will live. In my case, it was `on-vacation.gabefuentes.com`. This will be your website. This is assuming you have your own registered domain. You can also set up an S3 static website using their domain (see [Setting Up a Static S3 Site](http://docs.aws.amazon.com/AmazonS3/latest/dev/website-hosting-custom-domain-walkthrough.html)) 
 
@@ -63,10 +63,9 @@ For more detailed instructions, especially on how to setup route53 to host your 
                     └── image_2.jpg
 
 4. Configure website bucket (in my case the `on-vacation.gabefuentes.com` bucket) to be publicly accessible by adding the following bucket policy to `Properties > Permissions > Edit bucket policy`:
-    
-    *from [Setting Up a Static S3 Site](http://docs.aws.amazon.com/AmazonS3/latest/dev/website-hosting-custom-domain-walkthrough.html)
-    NOTE: The `"Resource":` key should be your bucket name
-     
+        
+        // From Setting Up a Static S3 Site
+        
         {
 	        "Version": "2012-10-17",
 	        "Statement": [
@@ -75,14 +74,14 @@ For more detailed instructions, especially on how to setup route53 to host your 
 		    	    "Effect": "Allow",
 		    	    "Principal": "*",
 		    	    "Action": "s3:GetObject",
-		    	    "Resource": "arn:aws:s3:::on-vacation.gabefuentes.com/*"
+		    	    "Resource": "arn:aws:s3:::on-vacation.gabefuentes.com/*" // Should be replaced with your bucket name
 		        }
 	        ]
         }
 
 5. Configure website bucket to enable website hosting in `Properties > Static Website Hosting > Enable website hosting`. Type your index document in the open field - in my case, `home.html`.
 
-6. Your S3 static website should now be live! In S3, under `Properties > Static Website Hosting` you will be able to see the `amazonaws.com` URL. Confirm that it is up, and you can reroute your own hostname in Route53 if you so choose.
+6. Your S3 static website should now be live! In S3, under `Properties > Static Website Hosting` you will be able to see the `amazonaws.com` URL. Confirm that it is up, and you can reroute your own hostname in Route 53 if you so choose.
 
 **Creating the Photo Album Views:**
 
@@ -138,7 +137,7 @@ For more details on the AWS Javascript API, view their docs [here](http://docs.a
           });
         };
 
-    The previous 'home.html' gallery links lead to `/gallery.html?name=gallery+name`, with whatever vacation gallery you are visiting replacing `gallery+name`. On the gallery side, you then use this url parameter (with a nifty `getUrlParameter` function I found at StackOverflow linked [here](http://stackoverflow.com/questions/19491336/get-url-parameter-jquery-or-how-to-get-query-string-values-in-js)) to search s3 with the same `s3.listObjectsV2` function used in the home screen.
+    The previous `home.html` gallery links lead to `/gallery.html?name=gallery+name`, with whatever vacation gallery you are visiting replacing `gallery+name`. On the gallery side, you then use this url parameter (with a nifty `getUrlParameter` function I found at StackOverflow linked [here](http://stackoverflow.com/questions/19491336/get-url-parameter-jquery-or-how-to-get-query-string-values-in-js)) to search S3 with the same `s3.listObjectsV2` function used in the home screen.
 
     Originally, I did not have thumbnails - I just had the gallery load up the full resolution images in a smaller image size. This meant the gallery was extremely slow to load. To solve this, I created thumbnails as well (the `/small` folder nested within the storage bucket - more on resizing later). As part of the process of converting the full resolution images into thumbnails, I also added the full image size to the file name. I can then use those image sizes to display the zoomed in image as part of PhotoSwipe.
 
@@ -146,9 +145,9 @@ For more details on the AWS Javascript API, view their docs [here](http://docs.a
 
 **Image Resizing**
 
-I created the image resizing aspect as part of the original Sinatra application, so I kept using the ruby script and manually uploading the images to s3 in their corresponding folders. However, this could easily be updated to hit the AWS API and upload them automatically.
+I created the image resizing aspect as part of the original Sinatra application, so I kept the ruby script for image manipulation and manually uploaded the images to S3 in their corresponding folders. However, this could easily be updated to hit the AWS API and upload them automatically.
 
-If you have not used ImageMagick before, it is a really great command line tool for manipulating images in all sorts of ways - my three uses of it barely scratch the surface. Definitely check it out [here](http://www.imagemagick.org/script/index.php)!
+If you have not used ImageMagick before, it is a really great command line tool for manipulating images in all sorts of ways - my three uses of it barely scratch the surface. Learn more  [here](http://www.imagemagick.org/script/index.php)!
 
 I started off with the photo album saved locally. The script iterates through each image and performs the following using the ruby interface for ImageMagick called `rmagick`.
 
@@ -156,9 +155,9 @@ I started off with the photo album saved locally. The script iterates through ea
 
         img.scale(0.1)
 
-2. I had a lot of trouble understanding why PhotoSwipe was displaying images in the wrong rotation only sometimes. What a figured out was that when a digital camera takes a picture, it stores the orientation of the camera as part of the metadata called EXIF profile. More info [here](http://www.imagemagick.org/script/command-line-options.php#auto-orient). ImageMagick makes reading the current orientation and converting if necessary easy!
+2. I had a lot of trouble understanding why PhotoSwipe was displaying images in the wrong rotation only sometimes. What I figured out was that when a digital camera takes a picture, it stores the orientation of the camera as part of the metadata called EXIF profile. By `auto_orient`ing images to 'TopLeftOrientation', they will all display upright. More info [here](http://www.imagemagick.org/script/command-line-options.php#auto-orient). ImageMagick makes reading the current orientation and converting if necessary easy!
 
-        if img.orientation.to_s != 'TopLeftOrientation' #correct, upright orientation
+        if img.orientation.to_s != 'TopLeftOrientation'
           img.auto_orient!
           img.write(i)
         end
