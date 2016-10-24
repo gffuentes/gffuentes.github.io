@@ -5,7 +5,7 @@ date:   2016-10-15 21:39:00 -0500
 categories: static
 image: photo-album.png
 ---
-#Background
+## Background
 
 After many vacations of borrowing my partner's aunt's DSLR, we had put together some pretty nice albums of fancy photos. I did not have a place to publicly store these photos, so I did some research into online options like SmugMug and Flickr. These options seemed like overkill or did not meet my main goals. 
 
@@ -19,7 +19,7 @@ But what were my main goals?
 
 After finding a JS based photo gallery library (more to come on that later), I created a Sinatra based application served on an EC2 instance. After learning about static web pages hosted on S3, I thought I could do better (and even cheaper!). Below I share how I was able to create a photo album in S3.
 
-#Application
+## Application
 
 **Ingredients:**
 

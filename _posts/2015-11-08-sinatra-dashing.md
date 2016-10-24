@@ -44,7 +44,7 @@ To achieve this, there are a couple of steps:
 - map each app in config.ru
 - Bonus: change Dashing to run on same web-server (future article)
 
-##Modular Sinatra with *Sinatra::Base*
+## Modular Sinatra with *Sinatra::Base*
 Both Dashing and the Sinatra Application need to have unique run spaces to make the built-in Sinatra settings correct for each unique app. Unfortunately, Dashing is not a modularized Sinatra application, but inherits from `Sinatra::Application` rather than `Sinatra::Base`. There is a work around, however, by modularizing the `boom-tools` app by wrapping it in the `Sinatra::Base` class. **NOTE: Some Sinatra specific things will need to change or will need registration when in use with sinatra/base. Make sure to look in Sinatra doc for more information.** [Modular Sinatra documentation](http://www.sinatrarb.com/intro.html#Sinatra::Base%20-%20Middleware,%20Libraries,%20and%20Modular%20Apps)
 
 {% highlight ruby %}
@@ -88,7 +88,7 @@ end
 #end
 {% endhighlight %}
 
-##Dashing file-path requirement change
+## Dashing file-path requirement change
 At this point, if you `rackup`, you will likely only be able to see the `boom-tools` routes. Going to the URL of one of your dashboard `/dash/science` may result in a blank screen. However, a quick network panel inspection will show a bunch of load failures, indicating that Dashing is not properly loading. Here is the fix, with a little help from the `require_all` gem to make requiring folders easier:
 
 {% highlight ruby %}

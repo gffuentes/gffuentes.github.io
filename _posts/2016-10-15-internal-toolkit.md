@@ -28,12 +28,7 @@ Although initially straightforward, this [Sinatra](http://www.sinatrarb.com/) ba
 4. exception notifier working during rake
 5. Whenever gem in Opsworks
 
-#Tools Used
-
-- Sinatra
-- AWS Opsworks
-
-#Working with Sinatra
+## Working with Sinatra
 
 Going into the project, Rails felt like overkill. I liked the simplicity of routes and views in Sinatra and thought it would suffice for the project. However, after building and mainting the toolkit for two years, I now understand what people mean when they say "Rails magic".
 
@@ -41,7 +36,7 @@ Many if not all of the obstactles that appeared have pretty straightforward Rail
 
 Looking back, I prefer the challenge. I now know so much more about the moving pieces in Rails by toppling down these Sinatra obstactles than I would have starting with Rails in the first place.
 
-#Google Auth
+## Google Auth
 
 I built the app to be [modular](http://www.sinatrarb.com/intro.html#Sinatra::Base%20-%20Middleware,%20Libraries,%20and%20Modular%20Apps) - this allowed for compartmentalizing components in a cleaner way. That is why you will see the inheritance of Sinatra::Base in the config and routes files rather than the classic style where you do not have to wrap the routes in a class.
 
@@ -138,11 +133,11 @@ end
 </div>
 {% endhighlight %}
 
-#Multiple Databases
+## Multiple Databases
 
 The toolkit has its own database to store info about employees, notes about our customers, and other helpful data used by the team. However, it also houses data from the main product itself. The product has a Rails backend and Node front end - the backend API is built based on the needs of the features that will be shown in the front end. As a growing company, the primary focus was customer features not internal features, which is how the Toolkit was born. As a member of the support team, I wanted to fill this need of not only displaying application data in the Toolkit but also doing it outside of the typical development process (i.e. touching the core API code base as little as possible). Plus, we also were using a PHP based Support Ticketing system at the time that had a terrible UI - tapping into that ugly database was a must!
 
-####Active Record
+### Active Record
 
 I wanted the ease and power of an ORM for not just the Toolkit database, but also the backend API database and our backend Data Warehouse - also known as database sharding. After some research, I found [Octopus](https://github.com/thiagopradi/octopus). Although this seemed like a good tool, I thought it was a little more complex than what the Toolkit needed. Maybe there was something I could take advantage of in Active Record itself?
 
@@ -191,7 +186,7 @@ end
 
 Active Record will assume the table name is the class that [inherited directly from ActiveRecord::Base](http://api.rubyonrails.org/classes/ActiveRecord/ModelSchema/ClassMethods.html#method-i-table_name), but you can explicitely set it with `self.table_name =`.
 
-####database.yml in OpsWorks
+### database.yml in OpsWorks
 
 For deploying the server, I was given a blank Opsworks project by our DevOps team - this was so support could manage the server ourselves to not add responsibility to Engineering. However, this came with its own complications.
 
@@ -257,7 +252,7 @@ production-tickets:
 
 With this, the template will automatically create the Opsworks MySql layer production configurations, it supports adding additional databases through custom JSON if needed (like for different environments) and also keeps the production environment credentials out of the Opsworks GUI by populating those sections with environment variables.
 
-#Environment Variables In OpsWorks
+## Environment Variables In OpsWorks
 
 OpsWorks handles environment variables with a simple form within the GUI itself. The below picture, borrowed from [AWS docs](https://aws.amazon.com/blogs/devops/aws-opsworks-supports-application-environment-variables/), should give you a good idea. 
 
@@ -276,7 +271,7 @@ if File.exist?('../../shared/config/unicorn.conf')
 end
 {% endhighlight %}
 
-#Empty Params Middleware
+## Empty Params Middleware
 
 One of the first forms created in the Toolkit was to aid in the new-hire onboarding process - things like triggering emails to create them an email address, order them a computer, set them up for different accounts would all kick off during form submission. My manager quickly created an HTML form which on initial testing worked, but I guess we were not thorough enough.
 
@@ -313,7 +308,7 @@ Check out [Sinatra Rack Middleware](http://www.sinatrarb.com/intro.html#Rack%20M
 
 Basically, what this does is takes the raw `@env["QUERY_STRING"]`, parses it, removes any empty or nil parameters, and saves it back for Sinatra to finish parsing into @params. Just add `use ParamsParser` to the apps config file and you are good to go.
 
-#Password Filtering in Logs
+## Password Filtering in Logs
 
 Another form being used by our deployment team allowed users to create logins for internal use. I quickly found out that error emails had the password parameters unfiltered. Although an easy fix, this was not well documented and took a lot of reserch to understand exactly where to filter out the passwords.
 
