@@ -1,0 +1,43 @@
+- name: Danner
+  hq city: Portland
+  hq state: Oregon
+  made in country: US
+  made in description: Factory in Portland
+  website: http://www.danner.com
+  goods:
+    - shoes
+
+
+- name: Everlane
+  hq city: San Francisco
+  hq state: California
+  made in description: Know your factories, Know your costs, Always ask why
+  website: https://www.everlane.com
+  stores in:
+    - New York
+    - San Francisco
+  goods:
+    - tops
+    - bottoms
+    - sweaters
+    - jackets
+
+
+- name: Topo Designs
+  hq city: Denver
+  hq state: Colorado
+  stores in:
+    - Denver
+    - Fort Collins
+    - Boulder
+    - San Francisco
+  made in country: US
+  website: https://topodesigns.com
+  goods:
+    - tops
+    - bottoms
+    - outdoor
+    - jackets
+
+
+- name: Pact
